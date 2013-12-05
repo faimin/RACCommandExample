@@ -20,37 +20,47 @@ static NSString *const kSubscribeURL = @"http://reactivetest.apiary.io/subscribe
 
 }
 
+- (id)init {
+	self = [super init];
+	if (self) {
+
+		[self mapSubscribeCommandStateToStatusMessage];
+	}
+	return self;
+}
+
+- (void)mapSubscribeCommandStateToStatusMessage {
+	RACSignal *startedMessageSource = [self.subscribeCommand.executionSignals map:^id(id value) {
+		return NSLocalizedString(@"Sending request...", nil);
+	}];
+
+	RACSignal *completedMessageSource = [self.subscribeCommand.executionSignals flattenMap:^RACStream *(RACSignal *subscribeSignal) {
+		return [[[subscribeSignal materialize] filter:^BOOL(RACEvent *event) {
+			return event.eventType == RACEventTypeCompleted;
+		}] map:^id(id value) {
+			return NSLocalizedString(@"Thanks", nil);
+		}];
+	}];
+
+	RACSignal *failedMessageSource = [[self.subscribeCommand.errors subscribeOn:[RACScheduler mainThreadScheduler]] map:^id(NSError *error) {
+		return NSLocalizedString(@"Error :(", nil);
+	}];
+
+	RAC(self, statusMessage) = [RACSignal merge:@[startedMessageSource, completedMessageSource, failedMessageSource]];
+}
+
 - (RACCommand *)subscribeCommand {
 	if (!_subscribeCommand) {
-		@weakify(self);
+		NSString *email = self.email;
 		_subscribeCommand = [[RACCommand alloc] initWithEnabled:self.emailValidSignal signalBlock:^RACSignal *(id input) {
-			@strongify(self);
-			RACSignal *subscribeSignal = [self postEmail:self.email];
+			RACSignal *subscribeSignal = [SubscribeViewModel postEmail:email];
 			return subscribeSignal;
 		}];
-
-		RACSignal *startedMessageSource = [_subscribeCommand.executionSignals map:^id(id value) {
-			return NSLocalizedString(@"Sending request...", nil);
-		}];
-
-		RACSignal *completedMessageSource = [_subscribeCommand.executionSignals flattenMap:^RACStream *(RACSignal *subscribeSignal) {
-			return [[[subscribeSignal materialize] filter:^BOOL(RACEvent *event) {
-				return event.eventType == RACEventTypeCompleted;
-			}] map:^id(id value) {
-				return NSLocalizedString(@"Thanks", nil);
-			}];
-		}];
-
-		RACSignal *failedMessageSource = [[_subscribeCommand.errors subscribeOn:[RACScheduler mainThreadScheduler]] map:^id(NSError *error) {
-			return NSLocalizedString(@"Error :(", nil);
-		}];
-
-		RAC(self, statusMessage) = [RACSignal merge:@[startedMessageSource, completedMessageSource, failedMessageSource]];
 	}
 	return _subscribeCommand;
 }
 
-- (RACSignal *)postEmail:(NSString *)email {
++ (RACSignal *)postEmail:(NSString *)email {
 	AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
 	manager.requestSerializer = [AFJSONRequestSerializer new];
 	NSDictionary *body = @{@"email": email ?: @""};

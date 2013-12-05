@@ -38,7 +38,7 @@
 
 	[self addViews];
 	[self defineLayout];
-	[self defineBehavior];
+	[self bindWithViewModel];
 }
 
 #pragma mark -
@@ -77,7 +77,7 @@
 	}];
 }
 
-- (void)defineBehavior {
+- (void)bindWithViewModel {
 	RAC(self.viewModel, email) = self.emailTextField.rac_textSignal;
 	self.subscribeButton.rac_command = self.viewModel.subscribeCommand;
 	RAC(self.statusLabel, text) = RACObserve(self.viewModel, statusMessage);
@@ -101,7 +101,6 @@
 	if (!_subscribeButton) {
 		_subscribeButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
 		[_subscribeButton setTitle:NSLocalizedString(@"Subscribe", nil) forState:UIControlStateNormal];
-
 	}
 	return _subscribeButton;
 }
