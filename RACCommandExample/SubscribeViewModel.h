@@ -16,5 +16,4 @@
 // read from this property
 @property(nonatomic, strong) NSString *statusMessage;
 
-
 @end

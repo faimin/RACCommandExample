@@ -11,6 +11,7 @@
 		85C5A1306CF5ADB0DE9920B4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C5AC7EB07F6C9673474C04 /* AppDelegate.m */; };
 		85C5A14BCE8637F47E2BA053 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 85C5ACA547869F46FFE708D7 /* InfoPlist.strings */; };
 		85C5A1D44EC087A727EA508E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 85C5AACA62C26730FF7FC255 /* Localizable.strings */; };
+		85C5A34D3B4AE3F1CAD9BEAF /* NSString+EmailAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C5A8019337946218BC2A98 /* NSString+EmailAdditions.m */; };
 		85C5A4302CD733F260D26724 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85C5A64E2450689F39013DBE /* UIKit.framework */; };
 		85C5A515C94083025291BF5F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85C5A6AD437757648D0E7AED /* Foundation.framework */; };
 		85C5A85EB5B4A469281E971A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 85C5A663E34A74E4CB7318A1 /* InfoPlist.strings */; };
@@ -44,11 +45,13 @@
 		85C5A43DC5CB27B80B167BF8 /* SubscribeViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubscribeViewModel.h; sourceTree = "<group>"; };
 		85C5A47E6FA165566891E503 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		85C5A5062F64EBEB732031BE /* SubscribeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubscribeViewController.m; sourceTree = "<group>"; };
+		85C5A51A773955ADE527735E /* NSString+EmailAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+EmailAdditions.h"; sourceTree = "<group>"; };
 		85C5A64E2450689F39013DBE /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		85C5A6970BA3F3173C8EC62C /* SubscribeViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubscribeViewModel.m; sourceTree = "<group>"; };
 		85C5A6AD437757648D0E7AED /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		85C5A7BF2B12D68CB8CB8CB0 /* RACCommandExampleTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.info; path = "RACCommandExampleTests-Info.plist"; sourceTree = "<group>"; };
 		85C5A7C17DA47716900DB3C1 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		85C5A8019337946218BC2A98 /* NSString+EmailAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+EmailAdditions.m"; sourceTree = "<group>"; };
 		85C5A94A0A6118A80B3E2071 /* RACCommandExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RACCommandExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		85C5A9E51224CA7834F055F4 /* RACCommandExampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RACCommandExampleTests.m; sourceTree = "<group>"; };
 		85C5AACA62C26730FF7FC255 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
@@ -159,6 +162,8 @@
 				85C5A6970BA3F3173C8EC62C /* SubscribeViewModel.m */,
 				85C5A43DC5CB27B80B167BF8 /* SubscribeViewModel.h */,
 				85C5AACA62C26730FF7FC255 /* Localizable.strings */,
+				85C5A8019337946218BC2A98 /* NSString+EmailAdditions.m */,
+				85C5A51A773955ADE527735E /* NSString+EmailAdditions.h */,
 			);
 			path = RACCommandExample;
 			sourceTree = "<group>";
@@ -302,6 +307,7 @@
 				85C5A1306CF5ADB0DE9920B4 /* AppDelegate.m in Sources */,
 				85C5A989524188BE29931CB3 /* SubscribeViewController.m in Sources */,
 				85C5ABB3B3626288EBA6AC17 /* SubscribeViewModel.m in Sources */,
+				85C5A34D3B4AE3F1CAD9BEAF /* NSString+EmailAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
