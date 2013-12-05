@@ -37,12 +37,12 @@ static NSString *const kSubscribeURL = @"http://reactivetest.apiary.io/subscribe
 			return [[[subscribeSignal materialize] filter:^BOOL(RACEvent *event) {
 				return event.eventType == RACEventTypeCompleted;
 			}] map:^id(id value) {
-				return @"Thanks";
+				return NSLocalizedString(@"Thanks", nil);
 			}];
 		}];
 
 		RACSignal *failedMessageSource = [[_subscribeCommand.errors subscribeOn:[RACScheduler mainThreadScheduler]] map:^id(NSError *error) {
-			return @"Error :(";
+			return NSLocalizedString(@"Error :(", nil);
 		}];
 
 		RAC(self, statusMessage) = [RACSignal merge:@[startedMessageSource, completedMessageSource, failedMessageSource]];
