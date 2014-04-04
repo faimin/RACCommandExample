@@ -8,7 +8,6 @@
 
 #import "AppDelegate.h"
 #import "SubscribeViewController.h"
-#import "DCIntrospect.h"
 
 @implementation AppDelegate
 
