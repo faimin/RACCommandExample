@@ -45,9 +45,10 @@ static NSString *const kSubscribeURL = @"http://reactivetest.apiary.io/subscribe
 
 - (RACCommand *)subscribeCommand {
 	if (!_subscribeCommand) {
-		NSString *email = self.email;
+		@weakify(self);
 		_subscribeCommand = [[RACCommand alloc] initWithEnabled:self.emailValidSignal signalBlock:^RACSignal *(id input) {
-			return [SubscribeViewModel postEmail:email];
+			@strongify(self);
+			return [SubscribeViewModel postEmail:self.email];
 		}];
 	}
 	return _subscribeCommand;
